@@ -37,3 +37,8 @@ class MainApp:
 
     def singleMode(self):
         print("[b green]Single Song Mode[/]")
+
+
+if __name__ == "__main__":
+    app = MainApp()
+    app.chooseAction()
