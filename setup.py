@@ -31,4 +31,4 @@ def setup():
                 print(e)
                 exit()
             else:
-                print("{} was installed successfully")
+                print("{} was installed successfully".format(module))
