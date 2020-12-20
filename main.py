@@ -3,6 +3,7 @@ from setup import setup
 setup()
 import os
 import sys
+import subprocess as sp
 
 import questionary as qr
 import requests
@@ -21,19 +22,19 @@ class MainApp:
     def chooseAction(self):
         print("[b red] Choose An Action[/]")
         actions = [
-            "Download a PlayList",
             "Download a Single Song",
+            "Download a PlayList",
         ]
 
         choice = qr.select(
             "Choose an action:",
             choices=actions,
-            default=actions[1],
+            default=actions[0],
         ).ask()
 
-        if choice == actions[0]:
+        if choice == actions[1]:
             self.playListMode()
-        elif choice == actions[1]:
+        elif choice == actions[0]:
             self.singleMode()
 
     def playListMode(self):
@@ -61,13 +62,22 @@ class MainApp:
         Method for downloading a single song.
         uses youtube-dl under the hood
         """
-        print("[b blue]Single Song Mode[/]")
+        print("[b blue] Single Song Mode [/]")
 
         pathForSong = qr.path(
-            "Select path for downloading songs:", only_directories=True
+            "Select path for downloading songs:",
+            only_directories=True,
+            qmark=">>>",
         ).ask()
 
-        os.chdir(pathForSong)
+        # os.chdir(pathForSong)
+        sp.run(
+            [
+                "cd",
+                f"{pathForSong}",
+            ],
+            shell=True,
+        )
 
 
 if __name__ == "__main__":
