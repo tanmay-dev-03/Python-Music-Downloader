@@ -63,6 +63,12 @@ class MainApp:
         """
         print("[b blue]Single Song Mode[/]")
 
+        pathForSong = qr.path(
+            "Select path for downloading songs:", only_directories=True
+        ).ask()
+
+        os.chdir(pathForSong)
+
 
 if __name__ == "__main__":
     app = MainApp()
