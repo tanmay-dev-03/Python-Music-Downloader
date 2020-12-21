@@ -56,6 +56,12 @@ class MainApp:
                 return
             else:
                 print("URL validated successfully!")
+                break
+
+        pathForSong = qr.path(
+            "Select the Folder to which you want to download the songs:",
+            only_directories=True,
+        ).ask()
 
     def singleMode(self):
         """
